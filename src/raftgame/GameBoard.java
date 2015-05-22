@@ -1,10 +1,12 @@
 package raftgame;
 
-public class GameBoard {
-	public final int boardSize;
-	public static Integer[][] board;
+import java.io.Serializable;
+
+public class GameBoard implements Serializable{
+	public int boardSize;
+	public static int[][] board;
 	public GameBoard(int size){
 		boardSize = size;
-		board = new Integer[boardSize][boardSize];
+		board = new int[boardSize][boardSize];
 	}
 }

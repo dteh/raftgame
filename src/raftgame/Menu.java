@@ -1,9 +1,10 @@
 package raftgame;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
-	public static void main(String[] args){
+	public static void main(String[] args) throws InterruptedException,IOException{
 		Scanner input = new Scanner(System.in);
 		System.out.println("Welcome!");
 		System.out.println("1- Create game");
@@ -19,12 +20,15 @@ public class Menu {
 			GameBoard board = new GameBoard(Integer.parseInt(input.nextLine()));
 			System.out.println("Creating game..");
 			//uncomment when trying cluster functionality
-			/*try{
+			try{
+				System.setProperty("java.net.preferIPv4Stack" , "true");
 				raft.API.setState(board);
 				raft.API.init(new InstApplier(), gameName);
 			}catch(Exception e){
 				e.printStackTrace();
-			}*/
+			}
+			Game main = new Game(board);
+			main.start();
 		
 		// Join a game
 		}else{

@@ -10,6 +10,7 @@ public class InstApplier implements raft.InstructionApplier {
 	@Override
 	public Object ApplyInstruction(Object inst) {
 		Instruction Inst = (Instruction)inst;
+		
 		if(GameBoard.board[Inst.x][Inst.y] == 0){
 			GameBoard.board[Inst.x][Inst.y] = Inst.newState;
 		}else if(GameBoard.board[Inst.x][Inst.y] == 2){
