@@ -45,7 +45,8 @@ public class Menu {
 				e.printStackTrace();
 			}
 			Thread.sleep(5000);
-			System.out.println(Arrays.deepToString(((GameBoard)raft.RaftNode.getStateObject()).board));
+			Game main = new Game(((GameBoard)raft.RaftNode.getStateObject()));
+			main.start();	
 			
 						
 		}

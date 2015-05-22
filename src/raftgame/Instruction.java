@@ -1,7 +1,9 @@
 package raftgame;
 
+import java.io.Serializable;
 
-public class Instruction {
+
+public class Instruction implements Serializable{
 	int x;
 	int y;
 	int newState;

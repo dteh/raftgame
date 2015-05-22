@@ -10,11 +10,13 @@ public class InstApplier implements raft.InstructionApplier {
 	public Object ApplyInstruction(Object inst) {
 		Instruction Inst = (Instruction)inst;
 		
-		if(GameBoard.board[Inst.x][Inst.y] == EMPTY){
-			GameBoard.board[Inst.x][Inst.y] = Inst.newState;
-		}else if(GameBoard.board[Inst.x][Inst.y] == COIN){
-			//TODO: increase player score
-			GameBoard.board[Inst.x][Inst.y] = Inst.newState;
+		//if spot is avail, place instructed item in spot
+		if(Game.map.board[Inst.x][Inst.y] == EMPTY){
+			Game.map.board[Inst.x][Inst.y] = Inst.newState;
+		//if spot is filled with a coin, move player on to it
+		}else if(Game.map.board[Inst.x][Inst.y] == COIN){
+			Game.map.board[Inst.x][Inst.y] = Inst.newState;
+			//add player to score db if non existant, or increment
 			if(Game.scores.get(Inst.user) != null){
 				Game.scores.put(Inst.user,Game.scores.get(Inst.user)+1);
 			}else{
@@ -25,8 +27,9 @@ public class InstApplier implements raft.InstructionApplier {
 		
 		// if the moving player has an old position, set to empty
 		if(!(Inst.oldx == -1)){
-			GameBoard.board[Inst.oldx][Inst.oldy] = EMPTY;
+			Game.map.board[Inst.oldx][Inst.oldy] = EMPTY;
 		}
+		raft.RaftNode.setStateObject(Game.map);
 		return null;
 	}
 	

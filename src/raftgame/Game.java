@@ -160,16 +160,16 @@ public class Game extends Canvas implements KeyListener{
 			
 			// if player goes over boundaries, move to other side
 			if(playerX < 0){
-				playerX = ((GameBoard)raft.RaftNode.getStateObject()).boardSize + playerX;
+				playerX = map.boardSize + playerX;
 			}
-			if(playerX >= ((GameBoard)raft.RaftNode.getStateObject()).boardSize){
-				playerX = playerX - ((GameBoard)raft.RaftNode.getStateObject()).boardSize;
+			if(playerX >= map.boardSize){
+				playerX = playerX - map.boardSize;
 			}
 			if(playerY < 0){
-				playerY = ((GameBoard)raft.RaftNode.getStateObject()).boardSize + playerY;
+				playerY = map.boardSize + playerY;
 			}
-			if(playerY >= ((GameBoard)raft.RaftNode.getStateObject()).boardSize){
-				playerY = playerY - ((GameBoard)raft.RaftNode.getStateObject()).boardSize;
+			if(playerY >= map.boardSize){
+				playerY = playerY - map.boardSize;
 			}
 			//send or process instruction (note, coords are reversed)
 			raft.API.pushInstruction(new Instruction(playerY,playerX,PLAYER, oldY, oldX, raft.RaftNode.myAddress));
@@ -181,10 +181,10 @@ public class Game extends Canvas implements KeyListener{
 		if(attempt > 5){
 			System.out.println("No free spaces, try again later");
 		}else{
-			int randx = rgen.nextInt(((GameBoard)raft.RaftNode.getStateObject()).boardSize);
-			int randy = rgen.nextInt(((GameBoard)raft.RaftNode.getStateObject()).boardSize);
+			int randx = rgen.nextInt(map.boardSize);
+			int randy = rgen.nextInt(map.boardSize);
 			
-			if(GameBoard.board[randx][randy]==0){
+			if(map.board[randx][randy]==0){
 				if(type == PLAYER){
 					playerX = randx;
 					playerY = randy;
@@ -224,7 +224,7 @@ public class Game extends Canvas implements KeyListener{
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
 			RIGHT = true;
-			printMap((GameBoard) raft.RaftNode.getStateObject());
+			printMap(map);
 		}
 	}
 
