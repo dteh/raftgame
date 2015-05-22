@@ -30,20 +30,23 @@ public class Menu {
 			Game main = new Game(board);
 			main.start();
 		
-		// Join a game
+		// Join a game -- not working TODO: fix multiplayer
 		}else{
 			System.out.println("Enter exiting game name");
 			String gameName = input.nextLine();
 			System.out.println("Connecting..");
 			
-			//uncomment when trying cluster functionality
-			/*
+			
 			try{
+				System.setProperty("java.net.preferIPv4Stack" , "true");	
 				raft.API.init(new InstApplier(), gameName);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			*/			
+			Thread.sleep(2000);
+			Game main = new Game((GameBoard)raft.RaftNode.getStateObject());
+			main.start();
+						
 		}
 	}	
 }

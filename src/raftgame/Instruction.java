@@ -7,6 +7,7 @@ public class Instruction {
 	int newState;
 	int oldx;
 	int oldy;
+	String user;
 	
 	/**
 	 * Instruction specifying new position of object.
@@ -18,12 +19,14 @@ public class Instruction {
 	 * These ones are only used if a player is being moved
 	 * @param ox - old x coord (can be -1 for none)
 	 * @param oy - old y coord (can be -1 for none)
+	 * @param user TODO
 	 */
-	public Instruction(int nx, int ny, int state, int ox, int oy){
+	public Instruction(int nx, int ny, int state, int ox, int oy, String usr){
 		x = nx;
 		y = ny;
 		newState = state;
 		oldx = ox;
 		oldy = oy;
+		user = usr;
 	}
 }
