@@ -118,7 +118,7 @@ public class Game extends Canvas implements KeyListener{
 		 }
 	}
 	
-	private void printMap(GameBoard b){
+	public static void printMap(GameBoard b){
 		for(int i = 0; i < b.boardSize; i++){
 			for(int j = 0; j < b.boardSize; j++){
 				System.out.print(b.board[i][j]);

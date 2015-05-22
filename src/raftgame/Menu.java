@@ -1,6 +1,7 @@
 package raftgame;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Menu {
@@ -43,9 +44,9 @@ public class Menu {
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			Thread.sleep(2000);
-			Game main = new Game((GameBoard)raft.RaftNode.getStateObject());
-			main.start();
+			Thread.sleep(5000);
+			System.out.println(Arrays.deepToString(((GameBoard)raft.RaftNode.getStateObject()).board));
+			
 						
 		}
 	}	
