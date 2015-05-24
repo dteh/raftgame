@@ -108,7 +108,7 @@ public class Game extends Canvas implements KeyListener{
 				 int xpos = 60 * j;
 				 int ypos = 60 * i;
 				 drawing.drawImage(bgSpr,xpos,ypos,null);
-				 if(((GameBoard)raft.RaftNode.getStateObject()).board[i][j] == 1){
+				 if((((GameBoard)raft.RaftNode.getStateObject()).board[i][j] == 1) || ((GameBoard)raft.RaftNode.getStateObject()).board[i][j] == 3){
 					 drawing.drawImage(pSpr,xpos,ypos,null);
 				 }
 				 if(((GameBoard)raft.RaftNode.getStateObject()).board[i][j] == 2){

@@ -5,6 +5,7 @@ public class InstApplier implements raft.InstructionApplier {
 	static final int EMPTY = 0;
 	static final int PLAYER = 1;
 	static final int COIN = 2;
+	static final int NPLAYERS = 3;
 	
 	@Override
 	public Object ApplyInstruction(Object inst) {
@@ -23,11 +24,17 @@ public class InstApplier implements raft.InstructionApplier {
 				Game.scores.put(Inst.user,0);
 			}
 			System.out.println(Game.scores.get(Inst.user));
+		}else if ((Game.map.board[Inst.x][Inst.y] == PLAYER) && (Inst.newState == PLAYER) ){
+			Game.map.board[Inst.x][Inst.y] = NPLAYERS;
 		}
 		
 		// if the moving player has an old position, set to empty
 		if(!(Inst.oldx == -1)){
-			Game.map.board[Inst.oldx][Inst.oldy] = EMPTY;
+			if(Game.map.board[Inst.oldx][Inst.oldy] == NPLAYERS){
+				Game.map.board[Inst.oldx][Inst.oldy] = PLAYER;
+			}else {
+				Game.map.board[Inst.oldx][Inst.oldy] = EMPTY;
+			}
 		}
 		raft.RaftNode.setStateObject(Game.map);
 		return null;
