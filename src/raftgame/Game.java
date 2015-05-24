@@ -18,6 +18,7 @@ public class Game extends Canvas implements KeyListener{
 	
 	static HashMap<String,Integer> scores;
 	static String scoreString;
+	static String winner = "";
 	
 	private BufferStrategy strategy;
 	private Image pSpr;
@@ -48,6 +49,7 @@ public class Game extends Canvas implements KeyListener{
 		map = g;
 		rgen = new Random();
 		scores.put(raft.RaftNode.myAddress, 0);
+		Game.map.setScore(scores);
 		
 		Frame frame = new Frame("fuk yeh");
 		frame.setLayout(null);
@@ -83,9 +85,10 @@ public class Game extends Canvas implements KeyListener{
 				coinTimer = 0;
 			}
 			scoreString = "";
-			for(Entry<String, Integer> entry:scores.entrySet()){
+			for(Entry<String, Integer> entry:((GameBoard)raft.RaftNode.getStateObject()).scores.entrySet()){
 				scoreString = scoreString + String.format("%s: %d, ",entry.getKey(),entry.getValue()); 
 			}
+			scores = ((GameBoard)raft.RaftNode.getStateObject()).scores;
 			
 			Thread.sleep(20);
 			
@@ -93,6 +96,8 @@ public class Game extends Canvas implements KeyListener{
 		    drawing.setFont(new Font("TimesRoman", Font.PLAIN, 10));
 		    drawing.setColor(Color.red);
 			drawing.drawString(scoreString, 10, 60 * ((GameBoard)raft.RaftNode.getStateObject()).boardSize + 10);
+		    drawing.setFont(new Font("TimesRoman", Font.PLAIN, 30));
+			drawing.drawString(winner, 60*((GameBoard)raft.RaftNode.getStateObject()).boardSize/4, 60 * ((GameBoard)raft.RaftNode.getStateObject()).boardSize/2);
 			drawing.dispose();
 			strategy.show();
 			//debugging - uncomment if you want to see map + movement;

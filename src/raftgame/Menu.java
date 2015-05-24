@@ -22,7 +22,7 @@ public class Menu {
 			System.out.println("Creating game..");
 			//uncomment when trying cluster functionality
 			try{
-				System.setProperty("java.net.preferIPv4Stack" , "true");
+				//System.setProperty("java.net.preferIPv4Stack" , "true");
 				raft.API.setState(board);
 				raft.API.init(new InstApplier(), gameName);
 			}catch(Exception e){

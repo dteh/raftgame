@@ -19,10 +19,15 @@ public class InstApplier implements raft.InstructionApplier {
 			Game.map.board[Inst.x][Inst.y] = Inst.newState;
 			//add player to score db if non existant, or increment
 			if(Game.scores.get(Inst.user) != null){
-				Game.scores.put(Inst.user,Game.scores.get(Inst.user)+1);
+				if(Game.scores.get(Inst.user) >= 20){
+					Game.winner = (Inst.user + " is the winner!");
+				}else{
+					Game.scores.put(Inst.user,Game.scores.get(Inst.user)+1);
+				}
 			}else{
-				Game.scores.put(Inst.user,0);
+				Game.scores.put(Inst.user,1);
 			}
+			Game.map.setScore(Game.scores);
 			System.out.println(Game.scores.get(Inst.user));
 		}else if ((Game.map.board[Inst.x][Inst.y] == PLAYER) && (Inst.newState == PLAYER) ){
 			Game.map.board[Inst.x][Inst.y] = NPLAYERS;
