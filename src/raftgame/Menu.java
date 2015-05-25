@@ -1,12 +1,13 @@
 package raftgame;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Menu {
+	private static Scanner input;
+
 	public static void main(String[] args) throws InterruptedException,IOException{
-		Scanner input = new Scanner(System.in);
+		input = new Scanner(System.in);
 		System.out.println("Welcome!");
 		System.out.println("1- Create game");
 		System.out.println("2- Join existing game");
@@ -39,7 +40,7 @@ public class Menu {
 			
 			
 			try{
-				System.setProperty("java.net.preferIPv4Stack" , "true");	
+				//System.setProperty("java.net.preferIPv4Stack" , "true");	
 				raft.API.init(new InstApplier(), gameName);
 			}catch(Exception e){
 				e.printStackTrace();

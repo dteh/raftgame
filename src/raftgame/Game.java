@@ -13,6 +13,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Game extends Canvas implements KeyListener{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2140477079429652397L;
 	static Random rgen;
 	static GameBoard map;
 	
@@ -49,9 +53,12 @@ public class Game extends Canvas implements KeyListener{
 		map = g;
 		rgen = new Random();
 		scores.put(raft.RaftNode.myAddress, 0);
+
+		//game will crash here if no host for game is found
 		Game.map.setScore(scores);
+
 		
-		Frame frame = new Frame("fuk yeh");
+		Frame frame = new Frame("RAFTGAME 1.0");
 		frame.setLayout(null);
 		setBounds(0,0,60 * ((GameBoard)raft.RaftNode.getStateObject()).boardSize, 60 * ((GameBoard)raft.RaftNode.getStateObject()).boardSize + 50);
 		frame.add(this);

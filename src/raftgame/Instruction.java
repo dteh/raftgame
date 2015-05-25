@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 
 public class Instruction implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1242660695919179813L;
 	int x;
 	int y;
 	int newState;
