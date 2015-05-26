@@ -14,6 +14,21 @@ JGroups 3.6.3Final
 
 raft-da
 
+### Running RaftGame:
+
+Make sure the compiled JAR is in the same folder as the resources bg.png, player.png, coin.png
+java -jar raftgame.jar
+
+### Potential Issues
+JGroups cannot connect to a cluster: Java attempts to use an IPv6 interface so IPv4 must be forced.
+
+java -Djava.net.preferIPv4Stack=true -jar raftgame.jar
+
+JGroups does not correctly bind to the interface: Force an address to bind to
+
+java -Djgroups.bind_addr=127.0.0.1 -jar raftgame.jar (or replace the IP with local IP)
+
+
 -----
 Code Structure
 
